@@ -7,7 +7,7 @@
 #include "Input_Validation_Extended.h"
 using namespace std;
 
-void printArray(double grade[]);
+void printArray();
 
 int main()
 {
@@ -38,17 +38,28 @@ int main()
 
   //output the results with users name to GradeReport.txt
   
-  ofstream myfile ("GradeReport.txt");
-  if(myfile.is_open())
-  {
-     
+  ofstream gradeArrayData ("GradeReport.txt");     
     for(int i = 0; i < size; ++i)
       {
-        cout << "Grade " << i + 1 << ": " << gradeArray[i] << endl;
+        gradeArrayData << "Grade " << i + 1.0 << ": " << gradeArray[i] << endl;
       }
-  }myfile.close();
+ 
 
 //display out the array to the user
-
+printArray();
   return 0;
+}
+void printArray()
+{
+  string file;
+  ifstream myfile("GradeReport.txt");
+  if(myfile.is_open())
+  {
+    while (getline(myfile, file))
+    {
+      cout << file << "\n";
+    }
+  myfile.close();
+  }
+
 }
